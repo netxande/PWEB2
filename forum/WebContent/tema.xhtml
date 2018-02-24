@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Consultas</title>
+</head>
+<h:body>
+	<h:outputText value="Resultado da Consulta"/>
+		<h:dataTable value="#{postagembean.postagens}" var="postagem" cellpadding="5" style = "backgorund-color:gray"
+		cellspacing="1" headerclass="header"
+		border="1" rowclasses="greenRow,whiteRow">
+			<h:column>
+				<f:facet name="header">Titulo</f:facet>
+				#{postagem.titulo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Conteudo</f:facet>
+				#{postagem.conteudo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				#{postagem.data}
+			</h:column>	
+			<h:column>
+				<f:facet name="header">Autor</f:facet>
+				#{postagem.dono.login}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Tema</f:facet>
+				#{postagem.tema.descricao}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Respostas</f:facet>
+				<ui:repeat var="resposta" value="#{postagem.repostas}">
+					<ul>
+						<li>#{resposta.texto}--#{resposta.uses.login}</li>
+					</ul>															
+				</ui:repeat>
+			</h:column>
+				
+		</h:dataTable>		
+</h:body>
+</html>
