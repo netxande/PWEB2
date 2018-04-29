@@ -23,7 +23,7 @@ public class PostagemDAO extends GenericDAO<Postagem, Integer>{
 	
 	@SuppressWarnings("unchecked")
 	public List<Postagem> findByTitulo(String busca) {
-		Query q = this.getEntityManager().createQuery("select p from Postagem p where p.titulo like :busca");
+		Query q = this.getEntityManager().createQuery("select p from Postagem p where lower(p.titulo) like :busca");
 		q.setParameter("busca", busca+"%");
 		return q.getResultList();
 	}
