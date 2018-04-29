@@ -29,8 +29,8 @@ public class TemaDAO extends GenericDAO<Tema, Integer>{
 	}
 	
 	public Tema findByDescricao(String descricao) {
-		Query q = this.getEntityManager().createQuery("select t from Tema t where t.descricao = :descricao");
-		q.setParameter("descricao", descricao);
+		Query q = this.getEntityManager().createQuery("select t from Tema t where lower(t.descricao) like :descricao");
+		q.setParameter("descricao", descricao+"%");
 		Tema tema = null;
 		try {
 			tema =  (Tema) q.getSingleResult();
